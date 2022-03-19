@@ -123,8 +123,8 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
 # scheduler cosinusoidale per il learning rate, il quale avrà dunque andamento cicliclo
 scheduler = CosineAnnealingWarmRestarts(optimizer=optimizer, eta_min=3e-5, T_0=100)
 
-# training per 5 epoche
-EPOCHS = 5
+# training per 10 epoche
+EPOCHS = 10
 train_loss = []
 train_acc = []
 val_loss = []
@@ -208,18 +208,4 @@ with open("results/batch_train_acc_bert.pkl", "wb") as f:
 with open("results/batch_dev_acc_bert.pkl", "wb") as f:
     pickle.dump(val_acc, f)
 
-# show some log of the learning process
-# steps_per_epoch_train = train_dataset.__len__() // BATCH_SIZE
-# steps_per_epoch_val = val_dataset.__len__() // BATCH_SIZE
 
-# for i in range(EPOCHS):
-#     print(
-#         "Epoch {} --> train accuracy: {}".format(
-#             i, train_acc[(steps_per_epoch_train * i) : (i + 1) * steps_per_epoch_train]
-#         )
-#     )
-#     print(
-#         "Epoch {} --> validation accuracy: {}".format(
-#             i, val_acc[(steps_per_epoch_val * i) : (i + 1) * steps_per_epoch_val]
-#         )
-#     )
